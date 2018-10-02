@@ -1,3 +1,5 @@
+"""created a new repo for this project to keeps things less messy; will check for changes in forked repo periodically"""
+
 ## Final Project: Herd Immunity Simulation
 
 We're going to create a basic simulation of herd immunity by modeling how a virus moves through a population where some (but not all) of a population is vaccinated against this virus.

@@ -1,7 +1,7 @@
 import random
+import virus
 
-
-# TODO: Import the virus clase
+# TODO: Import the virus class
 
 class Person(object):
     '''
@@ -43,9 +43,10 @@ class Person(object):
             is_vaccinated attribute is changed to True, and set self.infection to None.
     '''
 
-    def __init__(self, _id, is_vaccinated, is_alive, infection=None):
+    def __init__(self, _id, is_vaccinated, infection=None):
         # TODO:  Finish this method.  Follow the instructions in the class documentation
         # to set the corret values for the following attributes.
+        # keep getting error that there is no attribute self.is_alive
         self._id = _id
         self.is_vaccinated = is_vaccinated
         self.is_alive = True
@@ -66,7 +67,8 @@ class Person(object):
             # set is_vaccinated = True
             # infected = None
             #return True
-        infected_or_not = random.randint(0, 1)
+        infected_or_not = random.uniform(0, 1)
+        print(infected_or_not)
         if infected_or_not < self.infection.mortality_rate:
             self.is_alive = False
             return False
@@ -74,3 +76,8 @@ class Person(object):
             self.is_vaccinated = True
             self.infection = None
             return True
+
+
+# virus = virus.Virus("virus", 0.8, 0.8)
+# person = Person(22, is_vaccinated=True, is_alive=True, infection=None)
+# person.did_survive_infection()

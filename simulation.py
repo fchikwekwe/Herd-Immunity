@@ -1,5 +1,7 @@
 import random, sys
+
 random.seed(42)
+
 from person import Person
 from logger import Logger
 from virus import Virus
@@ -110,7 +112,7 @@ class Simulation(object):
         # people vaccinated, correct number of initially infected people).
         population = []
         infected_count = 0
-        while len(population) != pop_size:
+        while len(population) != population_size:
             # TODO: Create all the infected people first, and then worry about the rest.
             # Don't forget to increment infected_count every time you create a
             # new infected person!
@@ -144,8 +146,9 @@ class Simulation(object):
         #     - The entire population is dead.
         #     - There are no infected people left in the population.
         # In all other instances, the simulation should continue.
-        for person in self.population:
-            person
+        # for person in self.population:
+        #     person
+        pass
 
     def run(self):
         # TODO: Finish this method.  This method should run the simulation until
@@ -226,6 +229,7 @@ if __name__ == "__main__":
         initial_infected = int(params[5])
     else:
         initial_infected = 1
+
     simulation = Simulation(pop_size, vacc_percentage, virus_name, mortality_rate,
                             basic_repro_num, initial_infected)
     simulation.run()

@@ -146,9 +146,13 @@ class Simulation(object):
         #     - The entire population is dead.
         #     - There are no infected people left in the population.
         # In all other instances, the simulation should continue.
-        # for person in self.population:
-        #     person
-        pass
+        for person in self.population:
+            if person.is_alive = True:
+                False
+
+        # check all objects in list
+        # check is_alive attribute of each object if True or False
+
 
     def run(self):
         # TODO: Finish this method.  This method should run the simulation until

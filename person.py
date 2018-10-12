@@ -1,5 +1,6 @@
 import random
 import virus
+# import simulation
 
 # TODO: Import the virus class
 
@@ -68,10 +69,11 @@ class Person(object):
             # infected = None
             #return True
         infected_or_not = random.uniform(0, 1)
-        print("running did_survive_infection")
-        print(infected_or_not)
+        # print("running did_survive_infection")
+        # print(infected_or_not)
         if infected_or_not < self.infection.mortality_rate:
             self.is_alive = False
+            self.infection = None
             return False
         else:
             self.is_vaccinated = True

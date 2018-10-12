@@ -71,7 +71,6 @@ class Logger(object):
 
         f.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
-        f.close()
 
     def log_interaction(self, person1, person2, did_infect=None,
                         person2_vacc=None, person2_sick=None):
@@ -90,8 +89,14 @@ class Logger(object):
 
         f.write("Infected Person: {} \nExposed Person {} \nDid virus infect exposed person? {} \nIs exposed person vaccinated? {} \nIs exposed person sick? {}".format(person1, person2, did_infect,
                             person2_vacc, person2_sick))
-        f.close()
-
+        if did_infect == True:
+            f.write("\n{} was infected by {}".format(person2._id, person1._id))
+        elif person2_vacc == True:
+            f.write("\n{} got vaccinated against the infection.".format(person2._id))
+        elif person2_sick == True:
+            f.write("\n{} is already infected.".format(person2._id))
+        else:
+            f.write("\n{} did not get infected by {}".format(person2._id, person1._id))
 
     def log_infection_survival(self, person, did_die_from_infection):
         # TODO: Finish this method.  The Simulation object should use this method to log
@@ -110,8 +115,6 @@ class Logger(object):
         else:
             did_die_from_infection = True
             f.write("{} died from infection. \n")
-
-        f.close()
 
     def log_time_step(self, time_step_number):
         # TODO: Finish this method.  This method should log when a time step ends, and a

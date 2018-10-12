@@ -1,1 +1,4 @@
-At some point, this file will have answers. 
+Population Size: 100 	Percentage Vaccinated: 0.5 	Virus Name: Tuberculosis 	Mortality Rate 0.68 	Virus Reproduction Rate: 0.7
+The percentage of total infected for this simulation was 4.139130434782609% 
+The percentage of total dead for this simulation was 0.4434782608695652% 
+The number of times someone was potentially saved because they were already vaccinated is 3309

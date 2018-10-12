@@ -54,6 +54,7 @@ class Logger(object):
         # TODO:  Finish this initialization method.  The file_name passed should be the
         # full file name of the file that the logs will be written to.
         self.file_name = file_name
+        self.saved_by_vaccine = 0
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
@@ -68,8 +69,12 @@ class Logger(object):
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         f = open(self.file_name, "w")
+        answers = open("answers.txt", "w")
 
         f.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
+                           basic_repro_num))
+
+        answers.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
 
     def log_interaction(self, person1, person2, did_infect=None,
@@ -92,7 +97,8 @@ class Logger(object):
         if did_infect == True:
             f.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
         elif person2_vacc == True:
-            f.write("\nPerson #{} got vaccinated against the infection.".format(person2._id))
+            self.saved_by_vaccine += 1
+            f.write("\nPerson #{} is vaccinated against the infection.".format(person2._id))
         elif person2_sick == True:
             f.write("\nPerson #{} is already infected.".format(person2._id))
         else:
@@ -128,3 +134,14 @@ class Logger(object):
         f = open(self.file_name, "a")
 
         f.write("\nTime step #{} ended, beginning time step #{}.".format(time_step_number, time_step_number + 1))
+
+    def stats(self, population, total_infected):
+        total_dead = 0
+        for person in population:
+            if person.is_alive == False:
+                total_dead += 1
+            else:
+                pass
+
+        answers = open("answers.txt", "a")
+        answers.write("\nThe percentage of total infected for this simulation was {}% \nThe percentage of total dead for this simulation was {}% \nThe number of times someone was potentially saved because they were already vaccinated is {}".format(int(total_infected)/int(len(population)), int(total_dead)/int(len(population)), self.saved_by_vaccine))

@@ -197,6 +197,7 @@ class Simulation(object):
             should_continue = self._simulation_should_continue()
             print(should_continue)
         print('The simulation has ended after {} time steps.'.format(time_step_counter))
+        self.logger.stats(self.population, self.total_infected)
 
     def choose_random_person(self):
         choose_person = random.choice(self.population)
@@ -291,6 +292,7 @@ class Simulation(object):
                     person.infection = self.virus
         # need to set total infected number
         self.total_infected = self.total_infected + len(self.newly_infected)
+
         # clear out the newly infected list
         self.newly_infected = []
 

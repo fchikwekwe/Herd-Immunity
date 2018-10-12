@@ -87,16 +87,16 @@ class Logger(object):
         # event logged ends up on a separate line!
         f = open(self.file_name, "a")
 
-        f.write("Infected Person: {} \nExposed Person {} \nDid virus infect exposed person? {} \nIs exposed person vaccinated? {} \nIs exposed person sick? {}".format(person1, person2, did_infect,
-                            person2_vacc, person2_sick))
+        f.write("\nInfected Person: #{} \nExposed Person #{}".format(person1._id, person2._id))
+
         if did_infect == True:
-            f.write("\n{} was infected by {}".format(person2._id, person1._id))
+            f.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
         elif person2_vacc == True:
-            f.write("\n{} got vaccinated against the infection.".format(person2._id))
+            f.write("\nPerson #{} got vaccinated against the infection.".format(person2._id))
         elif person2_sick == True:
-            f.write("\n{} is already infected.".format(person2._id))
+            f.write("\nPerson #{} is already infected.".format(person2._id))
         else:
-            f.write("\n{} did not get infected by {}".format(person2._id, person1._id))
+            f.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
 
     def log_infection_survival(self, person, did_die_from_infection):
         # TODO: Finish this method.  The Simulation object should use this method to log
@@ -108,13 +108,13 @@ class Logger(object):
         # event logged ends up on a separate line!
         f = open(self.file_name, "a")
 
-        f.write("{} \n".format(person.resolve_infection()))
+        f.write("\nDid person #{} survive the infection?: {}".format(person._id, person.did_survive_infection()))
         if person.is_alive == True:
             did_die_from_infection = False
-            f.write("{} survived infection. \n")
+            f.write("\nPerson #{} survived infection.".format(person._id))
         else:
             did_die_from_infection = True
-            f.write("{} died from infection. \n")
+            f.write("\nPerson #{} died from infection.".format(person._id))
 
     def log_time_step(self, time_step_number):
         # TODO: Finish this method.  This method should log when a time step ends, and a
@@ -127,6 +127,4 @@ class Logger(object):
         # event logged ends up on a separate line!
         f = open(self.file_name, "a")
 
-        f.write("Time step {} ended, beginning {}.".format(time_step_number, time_step_number + 1))
-
-        f.close()
+        f.write("\nTime step #{} ended, beginning time step #{}.".format(time_step_number, time_step_number + 1))

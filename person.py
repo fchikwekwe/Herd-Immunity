@@ -53,14 +53,16 @@ class Person(object):
         self.is_alive = True
         self.infection = infection
 
-        if self.infection != None:
-            self.did_survive_infection()
-        else:
-            pass
+        # if self.infection != None:
+        #     self.did_survive_infection()
+        # else:
+        #     pass
 
     def did_survive_infection(self):
         # TODO:  Finish this method. Follow the instructions in the class documentation
         # for resolve_infection.
+        if self.is_vaccinated == False and self.infection == None:
+            return None
         # If person dies,
             # set is_alive to False
             # return False.

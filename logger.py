@@ -142,6 +142,9 @@ class Logger(object):
                 total_dead += 1
             else:
                 pass
+        print("The total number of infected is {}".format(total_infected))
+        print("The total number of dead is {}.".format(total_dead))
+        # print("The total size of the population is {}".format(len(population)))
 
         answers = open("answers.txt", "a")
-        answers.write("\nThe percentage of total infected for this simulation was {}% \nThe percentage of total dead for this simulation was {}% \nThe number of times someone was potentially saved because they were already vaccinated is {}".format(int(total_infected)/int(len(population)), int(total_dead)/int(len(population)), self.saved_by_vaccine))
+        answers.write("\nThe percentage of total infected for this simulation was {}% \nThe percentage of total dead for this simulation was {}% \nThe number of times someone was potentially saved because they were already vaccinated is {}".format(total_infected/len(population) * 100, total_dead/len(population) * 100, self.saved_by_vaccine))

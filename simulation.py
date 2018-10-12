@@ -290,8 +290,14 @@ class Simulation(object):
                 if person._id == id:
                     # then infect them with the virus; .infected attribute cannot be set to True
                     person.infection = self.virus
+        print(self.newly_infected)
+        newly_infected_set = set(self.newly_infected)
+        print("this is the set {}".format(newly_infected_set))
+        # input("just stopping to let you see result.")
         # need to set total infected number
-        self.total_infected = self.total_infected + len(self.newly_infected)
+        self.total_infected += len(newly_infected_set)
+        print("current total infected {}".format(self.total_infected))
+        # input("stopping again to let you see")
 
         # clear out the newly infected list
         self.newly_infected = []
